@@ -6,22 +6,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Three-Section Page</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to your external stylesheet -->
+    <title>2017 MPG Analysis</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-      <div id="fullpage">
-        <div class="section s0">
-            <div id="title_text">
-            <h1>This would be the first page</h1>
-            </div>       
-        </div>
-        <div class="section s1">
-            <div id="title_text">
-            <h1>This would be the second page</h1>
-            </div>        
-        </div>   
-      </div>
+    <h1>MPG Cars 2017</h1>
+    <div class="button-container">
+        <button id="back">Back</button>
+        <button id="forward">Forward</button>
+    </div>
 
+    <div id="scene_1" class="scene active">
+        <div class="chart-container">
+            <div id="scatterplot"></div>
+        </div>
+        <div class="text-container">
+            <h2>Scatterplot of MPG per Cylinder</h2>
+            <p>Text here if required</p>
+        </div>
+    </div>
+    
+    <div id="scene_2" class="scene active">
+        <div class="chart-container">
+            <div id="box-plot"></div>
+        </div>
+        <div class="text-container">
+            <h2>Box Plot of MPG per Parameter</h2>
+            <p>Text here if required</p>
+        </div>
+    </div>
+
+    <div id="scene_3" class="scene active">
+        <div class="chart-container">
+            <div id="bar-chart"></div>
+        </div>
+        <div class="text-container">
+            <h2>Bar Chart of MPG / Cylinder per Fuel Type Grouped by Make</h2>
+            <p>Text here if required</p>
+        </div>
+    </div>
+    
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!--script src="script.js"></script-->
+    <script src="https://unpkg.com/topojson-client@3"></script>
 </body>
 </html>
