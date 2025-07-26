@@ -1,16 +1,64 @@
-
 <!DOCTYPE html>
+<meta charset="utf-8">
 <html lang="en">
-<script src='https://d3js.org/d3.v5.min.js'>
+<script src='https://d3js.org/d3.v4.min.js'></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
 </script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2017 MPG Analysis</title>
+    <title>Analysis of Gas Mileage per Make, Fuel, and Engine Cylinders (2017)</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .scene {
+            display: none;
+        }
+
+        .active {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-gap: 20px;
+            align-items: start;
+        }
+
+        svg {
+            border: 1px solid #ccc;
+        }
+
+        #country-select {
+            margin: 10px 0;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .chart-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            align-items: left;
+        }
+
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            align-items: left;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>MPG Cars 2017</h1>
+    <h1>Analysis of Gas Mileage per Make, Fuel, and Engine Cylinders (2017)</h1>
     <div class="button-container">
         <button id="back">Back</button>
         <button id="forward">Forward</button>
@@ -19,35 +67,84 @@
     <div id="scene_1" class="scene active">
         <div class="chart-container">
             <div id="scatterplot"></div>
-        </div>
-        <div class="text-container">
-            <h2>Scatterplot of MPG per Cylinder</h2>
-            <p>Text here if required</p>
+            <div class="text-container">
+                <h1>Bubble Chart of MPG per Cylinder</h1>
+                <p>When looking at miles per gallon per vehicle there are a few parameters we can look at. In this
+                    instance there are three variables we are interested in: Make, Fuel, and Engine Cylinder count.
+                    <br><br>
+                    In the scatterplot above we note the Average Highway MPG per Engine Cylinder count with the number
+                    of
+                    vehicles with those values shown by the size of the circle. The count can be found by hovering over
+                    each circle. The color of the circles represent the Fuel type, with purple being Electric, red as
+                    Diesel and
+                    green as Gasoline.
+                    <br><br>
+                    An interesting area to note is group of electric vehicles sitting on 0 cylinders. The MPG values are
+                    quite high in this area and our sample sizes are small.
+                </p>
+            </div>
         </div>
     </div>
-    
-    <div id="scene_2" class="scene active">
+
+    <div id="scene_2" class="scene">
+        <div class="chart-container">
+            <div id="bar-chart"></div>
+        </div>
+        <div class="button-container">
+            <button id="updateFuelData">Fuel</button>
+            <button id="updateMakeData">Make</button>
+            <button id="updateCylindersData">Cylinders</button>
+        </div>
+        <div class="text-container">
+            <h1>Bar Chart of Average MPG per Parameter</h1>
+            <p>In this scene we are able to see the differences in average MPG by different parameters. By
+                clicking on the three parameter buttons above we can see the average highway MPG per that group.
+                Using this chart we are able to visually identify parameters or groups that are significantly
+                different.
+                <br><br>
+                Looking at the difference in averages based on Makes shows that Tesla, Hyundai, and Fiat have
+                the highest average MPG per make. Grouping by cylinders shows a decrease in average MPG as
+                the number of cylinders increase. If we group by fuel we can see that Electric fuel type
+                vehicles have a notable difference in average mpg in comparison to gasoline or diesel.
+            </p>
+
+        </div>
+    </div>
+
+    <div id="scene_3" class="scene">
         <div class="chart-container">
             <div id="box-plot"></div>
         </div>
         <div class="text-container">
-            <h2>Box Plot of MPG per Parameter</h2>
-            <p>Text here if required</p>
+            <div id="log"></div>
+        </div>
+        <div class="text-container">
+            <h1>Box Plot of MPG per Fuel Type</h1>
+            <p>Here we can view the distribution specifics of the average highway MPG grouped by fuel type. By
+                hovering over the boxes we are able to see the distribution details.
+                <br><br>
+                The Electricity group has a median value of 101 with a minimum value of 80 and a maximum value of
+                124.
+                The entire distrubtion has no overlap with either distrubtion for gasoline or diesel, which have
+                median values of
+                26 and 29.
+                <br><br>
+                Based on these distrubtions, it could be suggested that if an individual is purchasing a vehicle and
+                in
+                interested in maintaining a high MPG they should prioritize purchasing an electric vehicle over
+                priortizing Make
+                or number of Engine Cylinders (assuming that 0 covers electric vehicles). The bubble chart in the
+                initial scene might also suggest there are not many options for electric vehicles in comparison to
+                gasoline fuel
+                vehicles (based on this dataset).
+            </p>
         </div>
     </div>
 
-    <div id="scene_3" class="scene active">
-        <div class="chart-container">
-            <div id="bar-chart"></div>
-        </div>
-        <div class="text-container">
-            <h2>Bar Chart of MPG / Cylinder per Fuel Type Grouped by Make</h2>
-            <p>Text here if required</p>
-        </div>
-    </div>
-    
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <!--script src="script.js"></script-->
+    <script src="script.js"></script>
     <script src="https://unpkg.com/topojson-client@3"></script>
+
 </body>
+
 </html>
